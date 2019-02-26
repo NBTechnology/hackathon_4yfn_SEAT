@@ -26,25 +26,30 @@
 <div id="map"></div>
     <script>
     var map;
+    var routes = [];
+      <?php $i = 0; foreach ($routesDecrypt as $key => $value):?>
+      routes[<?php echo $i; ?>] = <?php echo json_encode($value); $i++;?>;
+    <?php endforeach;?>
+
+      console.log(routes);
+
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: -34.397, lng: 150.644},
           zoom: 8
         });
-      }
+        routes.forEach(element => {
+          var flightPlanCoordinates = [];
+          var i = 0;
+          console.log("ELEMENT -> " + element);
+          for (let index = 0; index < element.length - 1; index+=2) {
+          console.log("INDEX -> " + index);
+          flightPlanCoordinates[i] = {lat: element[index], lng: element[index + 1]};
+          i++;
+          console.log("COORDS -> " + flightPlanCoordinates);
 
-      var routes = [];
-      <?php $i = 0; foreach ($routesDecrypt as $key => $value):?>
-      routes[<?php echo $i; ?>] = <?php echo json_encode($value); $i++;?>;
-    <?php endforeach;?>
-
-      routes.forEach(element => {
-        var flightPlanCoordinates = [
-          {lat: 37.772, lng: -122.214},
-          {lat: 21.291, lng: -157.821},
-          {lat: -18.142, lng: 178.431},
-          {lat: -27.467, lng: 153.027}
-        ];
+          }
+          
         var flightPath = new google.maps.Polyline({
           path: flightPlanCoordinates,
           geodesic: true,
@@ -52,11 +57,19 @@
           strokeOpacity: 1.0,
           strokeWeight: 2
         });
-      });
+
+        flightPath.setMap(map);
+
+        });
+        
+      
+      
+      }
+
+      
     
 
-      console.log(routes);
-      
+     
 
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnylhyqEukDoV86vk8PAiQ1fVNfWrZi-Q&callback=initMap" async defer></script>
