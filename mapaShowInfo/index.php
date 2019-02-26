@@ -26,16 +26,19 @@ $response = file_get_contents('https://europe-west1-metropolis-fe-test.cloudfunc
 $response = json_decode($response, true);
 $routesEncrypt = array();
 $routesDecrypt = array();
+$stops = array();
 foreach ($response as $key => $value) {
     array_push($routesEncrypt, $value['route']);
+    array_push($stops, $value['stops']);
 }
 
 foreach ($routesEncrypt as $key => $value) {
     array_push($routesDecrypt,Polyline::decode($value));
 }
 // echo "<pre>";
-// print_r($routesDecrypt);
+// print_r($response);
 // exit;
+
 
 require('./index.view.php');
 ?>
