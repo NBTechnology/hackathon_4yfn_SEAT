@@ -5,7 +5,7 @@ $encoded = "sdq{Fc}iLj@zR|W~TryCzvC??do@jkKeiDxjIccLhiFqiE`uJqe@rlCy~B`t@sK|i@";
 
 $points = Polyline::decode($encoded);
 
-print_r($points);
+// print_r($points);
 
 
 
@@ -33,7 +33,9 @@ foreach ($response as $key => $value) {
 foreach ($routesEncrypt as $key => $value) {
     array_push($routesDecrypt,Polyline::decode($value));
 }
-echo "<pre>";
-print_r($routesDecrypt);
-exit;
+// echo "<pre>";
+// print_r($routesDecrypt);
+// exit;
+
+require('./index.view.php');
 ?>
