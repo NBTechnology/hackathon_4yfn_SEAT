@@ -36,7 +36,7 @@ foreach ($routesEncrypt as $key => $value) {
     array_push($routesDecrypt,Polyline::decode($value));
 }
 // echo "<pre>";
-// print_r($response);
+// print_r($routesDecrypt);
 // exit;
 
 
