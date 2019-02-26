@@ -30,12 +30,12 @@ class ViewController: UIViewController {
         }
 
         // Do any additional setup after loading the view, typically from a nib.
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 10.0) {
             print("10Secs")
             self.changeColor()
             self.playSound()
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 15.0) {
                 self.myView.layer.removeAllAnimations()
                 self.myView.backgroundColor = .white
             }
@@ -56,7 +56,7 @@ class ViewController: UIViewController {
              player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileTypeMPEGLayer3) */
             
             guard let player = player else { return }
-            player.numberOfLoops = 3
+            player.numberOfLoops = 2
             player.play()
             
         } catch let error {
